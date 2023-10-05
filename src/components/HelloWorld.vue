@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-responsive>
-      <v-img height="300" src="@/assets/umrah.png" style="margin-bottom: 15px; padding-top: 10px;;"/>
+      <v-img height="250" src="@/assets/umrah.png" style="margin-bottom: 15px; margin-top: 20px;;"/>
       <v-form v-model="valid">
       <v-row class="d-flex align-center justify-center">
         <v-col
@@ -80,6 +80,15 @@
         <v-btn color="primary" style="width: 100%;">
   Kirim
 </v-btn>
+        </v-col>
+
+        <v-col
+          cols="12"
+          md="4"
+          style="text-align: center; font-size: 13px; margin-top: -10px;"
+        >
+        Copyright &copy; 2023 Wincheez Indonesia
+
         </v-col>
 
       </v-row>
