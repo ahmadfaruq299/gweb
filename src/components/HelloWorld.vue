@@ -128,9 +128,9 @@ const email = ref('')
 const phoneNumber = ref('') 
 const address = ref('') 
 const noUndian = ref('') 
-const districs = ref([])
-let cities: any[]
-let provinces = ref ([])
+let districs = ref([''])
+let cities = ref([''])
+let provinces = ref ([''])
 
 let nameRules: any = [
       // {

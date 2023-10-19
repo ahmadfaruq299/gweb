@@ -47,12 +47,7 @@
   </v-container>
 </template>
 
-<script>
-  export default {
-    data: () => (
-      {
-        selecteds: ["Y", "A", "1", "2", "3", "3", "1", "Z"]
-      }
-    ),
-  }
+<script setup lang="ts">
+  import { ref } from 'vue'
+  let selecteds =  ref(["Y", "A", "1", "2", "3", "3", "1", "Z"])
 </script>
