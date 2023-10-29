@@ -1,116 +1,151 @@
 <template>
   <v-container>
     <v-responsive>
-      <v-form style="margin-top: 20px;">
-      <v-row class="d-flex align-center justify-center">
-        <v-col cols="12" md="4">
-          <v-text-field
-            :counter="10"
-            label="Nomor Undian"
-            hide-details
-            variant="underlined"
-            v-model="noUndian"
-          ></v-text-field>
-        </v-col>
+      <div v-if="saved" style="margin-top: 200px">
+        REGISTER BERHASIL
+      </div>
+      <div v-else>
+        <v-form v-model="form" style="margin-top: 20px;" @submit.prevent="onSubmit">
+          <v-row class="d-flex align-center justify-center">
+            <v-col cols="12" md="4">
+              <v-text-field
+                :counter="8"
+                :rules="[noUndianRules]"
+                label="Nomor Undian"
+                hide-details
+                variant="underlined"
+                v-model="noUndian"
+                placeholder="Isi 8 Digit No Undian"
+              ></v-text-field>
+            </v-col>
 
-        <v-col cols="12" md="4">
-          <v-text-field
-            v-model="nik"
-            label="No. KTP"
-            hide-details
-            variant="underlined"
-          ></v-text-field>
-        </v-col>
+            <v-col cols="12" md="4">
+              <v-text-field
+                v-model="nik"
+                :rules="[nikRules]"
+                label="No. KTP"
+                hide-details
+                variant="underlined"
+              ></v-text-field>
+            </v-col>
 
-        <v-col cols="12" md="4">
-          <v-text-field
-            v-model="fullName"
-            label="Nama Lengkap"
-            hide-details
-            variant="underlined"
-          ></v-text-field>
-        </v-col>
+            <v-col cols="12" md="4">
+              <v-text-field
+                v-model="fullName"
+                :rules="[nameRules]"
+                label="Nama Lengkap"
+                hide-details
+                variant="underlined"
+              ></v-text-field>
+            </v-col>
 
-        <v-col cols="12" md="4">
-          <v-text-field
-            v-model="email"
-            :rules="emailRules"
-            label="E-mail"
-            hide-details
-            variant="underlined"
-          ></v-text-field>
-        </v-col>
+            <v-col cols="12" md="4">
+              <v-text-field
+                v-model="email"
+                :rules="[emailRules]"
+                label="E-mail"
+                hide-details
+                variant="underlined"
+              ></v-text-field>
+            </v-col>
 
-        <v-col cols="12" md="4">
-          <v-text-field
-            v-model="phoneNumber"
-            label="No. WhatsApp"
-            hide-details
-            variant="underlined"
-          ></v-text-field>
-        </v-col>
+            <v-col cols="12" md="4">
+              <v-text-field
+                v-model="phoneNumber"
+                :rules="[phoneRules]"
+                label="No. WhatsApp"
+                hide-details
+                variant="underlined"
+              ></v-text-field>
+            </v-col>
 
-        <v-col cols="12" md="4">
-          <v-text-field
-            v-model="address"
-            label="Alamat Lengkap (Sesuai KTP)"
-            hide-details
-            variant="underlined"
-          ></v-text-field>
-        </v-col>
+            <v-col cols="12" md="4">
+              <v-text-field
+                v-model="address"
+                :rules="[addressRules]"
+                label="Alamat Lengkap (Sesuai KTP)"
+                hide-details
+                variant="underlined"
+              ></v-text-field>
+            </v-col>
 
-        <v-col cols="12" md="4">
-          <v-select
-            v-model="provinceCode"
-            label="Provinsi"
-            :items="provinces"
-            hide-details
-            variant="underlined"
-            @update:modelValue="onProvinceSelected"
-          ></v-select>
-        </v-col>
+            <v-col cols="12" md="4">
+              <v-select
+                v-model="provinceCode"
+                :rules="[required]"
+                label="Provinsi"
+                :items="provinces"
+                hide-details
+                variant="underlined"
+                @update:modelValue="onProvinceSelected"
+              ></v-select>
+            </v-col>
 
-        <v-col
-          cols="12"
-          md="4"
-        >
-          <v-select
-            :loading="cityLoading"
-            v-model="cityCode"
-            label="Kabupaten/Kota"
-            :items="cities"
-            hide-details
-            variant="underlined"
-            @update:modelValue="onCitySelected"
-          ></v-select>
-        </v-col>
+            <v-col
+              cols="12"
+              md="4"
+            >
+              <v-select
+                :loading="cityLoading"
+                v-model="cityCode"
+                :rules="[required]"
+                label="Kabupaten/Kota"
+                :items="cities"
+                hide-details
+                variant="underlined"
+                @update:modelValue="onCitySelected"
+              ></v-select>
+            </v-col>
 
-        <v-col cols="12" md="4">
-          <v-select
-            :loading="districtLoading"
-            v-model="districtCode"
-            label="Kecamatan"
-            :items="districs"
-            hide-details
-            variant="underlined"
-            @update:modelValue="onDistrictSelected"
-          ></v-select>
-        </v-col>
+            <v-col cols="12" md="4">
+              <v-select
+                :loading="districtLoading"
+                v-model="districtCode"
+                :rules="[required]"
+                label="Kecamatan"
+                :items="districs"
+                hide-details
+                variant="underlined"
+                @update:modelValue="onDistrictSelected"
+              ></v-select>
+            </v-col>
 
-        <v-col cols="12" md="4">
-          <v-file-input label="Foto Nomor Undian" variant="underlined"></v-file-input>
-        </v-col>
+            <v-col cols="12" md="4">
+              <v-file-input label="Foto Nomor Undian" variant="underlined"></v-file-input>
+            </v-col>
 
-        <v-col cols="12" md="4"><v-btn color="primary" style="width: 100%;" @click="save">Kirim</v-btn></v-col>
+            <v-col cols="12" md="4"><v-btn color="primary" style="width: 100%;" type="submit" @click="save">Kirim</v-btn></v-col>
 
-        <v-col
-          cols="12"
-          md="4"
-          style="text-align: center; font-size: 13px; margin-top: -10px;"
-        >Copyright &copy; 2023 Wincheez Indonesia
-        </v-col>
-      </v-row>
-    </v-form>
+            <v-col
+              cols="12"
+              md="4"
+              style="text-align: center; font-size: 13px; margin-top: -10px;"
+            >Copyright &copy; 2023 Wincheez Indonesia
+            </v-col>
+          </v-row>
+        </v-form>
+      </div>
+
+      <v-snackbar
+        v-model="snackbar"
+        multi-line
+        :color="messageColor"
+        position="sticky"
+        location="top"
+        variant="flat"
+      >
+        {{ message }}
+
+        <template v-slot:actions>
+          <v-btn
+            color="white"
+            variant="text"
+            @click="snackbar = false"
+          >
+            Tutup
+          </v-btn>
+        </template>
+      </v-snackbar>
     </v-responsive>
   </v-container>
 </template>
@@ -138,43 +173,53 @@ let cities = ref([])
 let provinces = ref ([])
 let cityLoading = ref(false)
 let districtLoading = ref(false)
+let saved = ref(false)
+let snackbar = ref(false)
+let message = ref('')
+let messageColor = ref('info')
+let form = ref(false)
 
-let nameRules: any = [
-      // {
-      //   value: () => {
-      //     if (value) return true
+const required = (value) => {
+  if (!value) return false
+  return true
+}
+const noUndianRules = (value) => {
+  if (!value || (value && value.length != 8)) return 'No Undian 8 digit'
+  return true
+}
+const nikRules = (value) => {
+  if (!value || (value && value.length != 16)) return 'Isi 16 digit No KTP'
+  return true
+}
 
-      //     return 'Name is required.'
-      //   },
-      // },
-      // {
-      //   value => {
-      //     if (value?.length <= 10) return true
+const nameRules = (value) => {
+  if (!value || (value && value.length < 2)) return 'Isi Nama lengkap'
+  return true
+}
 
-      //     return 'Name must be less than 10 characters.'
-      //   },
-      // }
-]
+const emailRules = (value) => {
+  if (!value || !(/.+@.+\..+/.test(value))) return 'Email tidak valid'
+  return true
+}
 
-let  emailRules: any [
-        // value => {
-        //   if (value) return true
+const phoneRules = (value) => {
+  if (!value || (value.length < 8)) return 'No WA tidak valid'
+  return true
+}
+const addressRules = (value) => {
+  if (!value || (value.length < 10)) return 'No WA tidak valid'
+  return true
+}
 
-        //   return 'E-mail is requred.'
-        // },
-        // value => {
-        //   if (/.+@.+\..+/.test(value)) return true
-
-        //   return 'E-mail must be valid.'
-        // },
-]
-
-let initProvince: any = {
-  text: "Pilih Provinsi",
-  value: "00"
+const onSubmit = () => {
+  if (!form.value) return
 }
 
 const save = async () => {
+  if (!form.value) {
+    return
+  }
+
   let data = {
     "nik": nik.value,
     "full_name": fullName.value,
@@ -189,9 +234,36 @@ const save = async () => {
     "province_name": provinceName.value,
     "province_code": provinceCode.value
   }
-  console.log('customer: ', data)
-  // const res = await axios.post('/customers', data)
-  // console.log('res', res)
+  // console.log('customer: ', form.value)
+  const res = await axios.post('/customers', data)
+  console.log('res', res)
+  if (res.status == 200) {
+    saved.value = true
+    reset()
+    // snackbar.value = true
+    // message.value = 'Data undian berhasil disimpan. Nantikan informasi selanjutnya!'
+  } else  {
+    snackbar.value = true
+    messageColor.value = 'error'
+    message.value = 'Mohon maaf telah terjadi kesalahan!'
+  }
+}
+
+const reset = () => {
+  noUndian.value = ''
+  nik.value = ''
+  fullName.value = ''
+  email.value = ''
+  phoneNumber.value = ''
+  address.value = ''
+  districtName.value = ''
+  districtCode.value = ''
+  cityName.value = ''
+  cityCode.value = ''
+  provinceName.value = ''
+  provinceCode.value = ''
+  cities.value = []
+  districs.value = []
 }
 
 const onProvinceSelected = async (code: string) => {
