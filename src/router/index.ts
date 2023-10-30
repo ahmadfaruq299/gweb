@@ -1,5 +1,6 @@
 // Composables
 import { createRouter, createWebHistory } from 'vue-router'
+import { authGuard } from "@auth0/auth0-vue";
 
 const routes = [
   {
@@ -18,6 +19,42 @@ const routes = [
         path: 'lottery',
         name: 'Lottery',
         component: () => import(/* webpackChunkName: "home" */ '@/views/Lottery.vue'),
+      },
+    ],
+  },
+  {
+    path: '/admin',
+    component: () => import('@/layouts/admin/Default.vue'),
+    children: [
+      {
+        path: '',
+        name: 'Callback',
+        component: () => import(/* webpackChunkName: "home" */ '@/views/admin/AuthenticationCallback.vue'),
+        beforeEnter: authGuard,
+      },
+      {
+        path: '/dashboard',
+        name: 'Dashboard',
+        component: () => import(/* webpackChunkName: "home" */ '@/views/admin/Home.vue'),
+        beforeEnter: authGuard,
+      },
+      {
+        path: '/design',
+        name: 'Design',
+        component: () => import('@/views/admin/Design.vue'),
+        beforeEnter: authGuard,
+      },
+      {
+        path: '/resources',
+        name: 'Resources',
+        component: () => import('@/views/admin/Resources.vue'),
+        beforeEnter: authGuard,
+      },
+      {
+        path: '/settings',
+        name: 'Settings',
+        component: () => import('@/views/admin/Settings.vue'),
+        beforeEnter: authGuard,
       },
     ],
   },

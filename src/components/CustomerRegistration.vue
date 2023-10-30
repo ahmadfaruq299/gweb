@@ -5,7 +5,7 @@
         REGISTER BERHASIL
       </div>
       <div v-else>
-        <v-form v-model="form" style="margin-top: 20px;" @submit.prevent="onSubmit">
+        <v-form v-model="form" style="margin-top: 0px;" @submit.prevent="onSubmit">
           <v-row class="d-flex align-center justify-center">
             <v-col cols="12" md="4">
               <v-text-field
@@ -122,6 +122,9 @@
               style="text-align: center; font-size: 13px; margin-top: -10px;"
             >Copyright &copy; 2023 Wincheez Indonesia
             </v-col>
+
+            <v-col cols="12">
+            </v-col>
           </v-row>
         </v-form>
       </div>
@@ -236,7 +239,6 @@ const save = async () => {
   }
   // console.log('customer: ', form.value)
   const res = await axios.post('/customers', data)
-  console.log('res', res)
   if (res.status == 200) {
     saved.value = true
     reset()
