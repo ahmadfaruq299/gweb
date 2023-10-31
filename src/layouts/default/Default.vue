@@ -1,5 +1,5 @@
 <template>
-  <v-img style="padding: 0; margin-top: 0;"  src="@/assets/atas.jpeg"/>
+  <v-img style="padding: 0; margin-top: 0;"  src="@/assets/banner1.jpeg"/>
   <v-app>
     <default-bar />
     <default-view />
