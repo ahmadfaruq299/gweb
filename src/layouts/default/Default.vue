@@ -3,7 +3,6 @@
   <v-app>
     <default-bar />
     <default-view />
-    <v-img style="padding: 0;" height="290" src="@/assets/bawah.jpeg"/>
   </v-app>
 </template>
 

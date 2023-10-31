@@ -5,15 +5,21 @@
         REGISTER BERHASIL
       </div>
       <div v-else>
+        <v-row>
+          <v-col cols="12" style="text-align: center">
+            <h3 style="color: #cf2e2e">PESERTA UNDIAN</h3>
+          </v-col>
+        </v-row>
         <v-form v-model="form" style="margin-top: 0px;" @submit.prevent="onSubmit">
           <v-row class="d-flex align-center justify-center">
             <v-col cols="12" md="4">
               <v-text-field
+                  class="text-field"
                 :counter="8"
                 :rules="[noUndianRules]"
                 label="Nomor Undian"
                 hide-details
-                variant="underlined"
+                variant="outlined"
                 v-model="noUndian"
                 placeholder="Isi 8 Digit No Undian"
               ></v-text-field>
@@ -25,7 +31,7 @@
                 :rules="[nikRules]"
                 label="No. KTP"
                 hide-details
-                variant="underlined"
+                variant="outlined"
               ></v-text-field>
             </v-col>
 
@@ -35,7 +41,7 @@
                 :rules="[nameRules]"
                 label="Nama Lengkap"
                 hide-details
-                variant="underlined"
+                variant="outlined"
               ></v-text-field>
             </v-col>
 
@@ -45,7 +51,7 @@
                 :rules="[emailRules]"
                 label="E-mail"
                 hide-details
-                variant="underlined"
+                variant="outlined"
               ></v-text-field>
             </v-col>
 
@@ -55,7 +61,7 @@
                 :rules="[phoneRules]"
                 label="No. WhatsApp"
                 hide-details
-                variant="underlined"
+                variant="outlined"
               ></v-text-field>
             </v-col>
 
@@ -65,7 +71,7 @@
                 :rules="[addressRules]"
                 label="Alamat Lengkap (Sesuai KTP)"
                 hide-details
-                variant="underlined"
+                variant="outlined"
               ></v-text-field>
             </v-col>
 
@@ -76,7 +82,7 @@
                 label="Provinsi"
                 :items="provinces"
                 hide-details
-                variant="underlined"
+                variant="outlined"
                 @update:modelValue="onProvinceSelected"
               ></v-select>
             </v-col>
@@ -92,7 +98,7 @@
                 label="Kabupaten/Kota"
                 :items="cities"
                 hide-details
-                variant="underlined"
+                variant="outlined"
                 @update:modelValue="onCitySelected"
               ></v-select>
             </v-col>
@@ -105,7 +111,7 @@
                 label="Kecamatan"
                 :items="districs"
                 hide-details
-                variant="underlined"
+                variant="outlined"
                 @update:modelValue="onDistrictSelected"
               ></v-select>
             </v-col>
@@ -114,7 +120,7 @@
               <v-file-input label="Foto Nomor Undian" variant="underlined"></v-file-input>
             </v-col>
 
-            <v-col cols="12" md="4"><v-btn color="primary" style="width: 100%;" type="submit" @click="save">Kirim</v-btn></v-col>
+            <v-col cols="12" md="4"><v-btn color="primary" style="width: 100%;" size="large" type="submit" @click="save">DAFTAR!</v-btn></v-col>
 
             <v-col
               cols="12"
@@ -152,6 +158,18 @@
     </v-responsive>
   </v-container>
 </template>
+
+<style scoped>
+  .label {
+    color: #0d47a1;
+  }
+
+  input {
+    color: #0d47a1;
+    border: 3px #ccc solid;
+  }
+
+</style>
 
 <script setup lang="ts">
 
