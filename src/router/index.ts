@@ -23,6 +23,17 @@ const routes = [
     ],
   },
   {
+    path: '/under',
+    component: () => import('@/layouts/under/Default.vue'),
+    children: [
+      {
+        path: '',
+        name: 'Under',
+        component: () => import(/* webpackChunkName: "home" */ '@/views/Under.vue'),
+      },
+    ],
+  },
+  {
     path: '/admin',
     component: () => import('@/layouts/admin/Default.vue'),
     children: [
