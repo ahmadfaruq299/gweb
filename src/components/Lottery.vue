@@ -26,7 +26,7 @@
 
           <v-row style="margin-top: 10px;">
             <v-col cols="12" style="text-align: center;">
-              <h1>HADIAH: UMRAH BERSAMA WINCheez</h1>
+              <h1>HADIAH UTAMA: UMRAH BERSAMA WINCheez</h1>
             </v-col>
           </v-row>
 
