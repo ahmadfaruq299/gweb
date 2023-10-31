@@ -7,7 +7,7 @@
       <div v-else>
         <v-row>
           <v-col cols="12" style="text-align: center">
-            <h3 style="color: #cf2e2e">PESERTA UNDIAN</h3>
+            <h3 style="color: #cf2e2e">PESERTA UNDIAN Wincheez</h3>
           </v-col>
         </v-row>
         <v-form v-model="form" style="margin-top: 0px;" @submit.prevent="onSubmit">
